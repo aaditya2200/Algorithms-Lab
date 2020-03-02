@@ -16,10 +16,10 @@ int partition(int arr[],int l,int h)
 	int i = l-1;
 	for (j = l; j < h; j++)
 	{
-	 	if (arr[j] < pivot)
+	 	if (arr[j] <= pivot)
 	 	{
+	 		i++;
 	 		swap(&arr[j],&arr[i]);
-	 		i++;	
 	 	}
 	}
 	swap(&arr[i+1],&arr[h]);
@@ -47,12 +47,14 @@ int main()
 	int arr[MAX];
 	cout << "\nEnter the number of elements (max 50): ";
 	cin >> n;
+	int s = n;
 	cout << "\nEnter the elements in the array: ";
 	for (i = 0; i < n; i++)
 	{
 		cin >> arr[i];
 	}
-	quicksort(arr,0,n-1);
+	quicksort(arr,0,s-1);
+	cout << "abcd " << n;
 	cout << "\nThe sorted array is: ";
 	for (i = 0; i < n; i++)
 	{

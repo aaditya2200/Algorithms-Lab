@@ -19,11 +19,14 @@ string prefix(string a,string b)
 
 string divide(string str[],int l, int h)
 {
+	if (l == h)
+		return str[l];
 	if (l < h)
 	{
 		int m = (l+h)/2;
 		string a = divide(str,l,m);
 		string b = divide(str,m+1,h);
+		cout << a << " " << b;
 		return (prefix(a,b));
 	}
 }
@@ -32,7 +35,6 @@ string divide(string str[],int l, int h)
 int main()
 {
 	string str[4];
-	char t[10];
 	cout << "\nEnter 4 strings: ";
 	for (i = 0; i < 4; i++)
 	{

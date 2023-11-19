@@ -1,5 +1,5 @@
 //! Experiment run separately using different sample sizes.
-//! Total 5 runs for each sample size, and averaged.
+//! Total 100 runs for each sample size, and averaged.
 //! To compile, please run: g++ --std=c++11 experiment.cpp
 #include <random>
 #include <iostream>

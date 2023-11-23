@@ -1,7 +1,8 @@
 //! Experiment run separately using different sample sizes.
-//! Total 100 runs for each sample size, and averaged.
+//! Total 5 runs for each sample size, and averaged.
 //! To compile, please run: g++ --std=c++11 experiment.cpp
 #include <random>
+#include <cmath>
 #include <iostream>
 #define MIL 1000000
 
@@ -23,7 +24,7 @@ int main() {
     //! sampling 
     //! first with sample size of 20.
     for (int j = 0; j < 100; j++) {
-    for (int i = 0; i < 400; i++) {
+    for (int i = 0; i < 20; i++) {
         random_index = get_random_index(0,1);
         //! basically, if we get 0, we pick from positives list, else negatives
         if (random_index == 0) {
@@ -44,10 +45,19 @@ int main() {
     double positive_rate = (static_cast<double>(plus) / samples.size()) * 100;
     results.push_back(positive_rate);
     }
-    double average;
+    double sum;
     for (auto rate: results) {
-        average += rate;
+        sum += rate;
     }
-    std::cout << "Population positive rate " << average / 100 << "\n";
+    double average = sum/100;
+    std::cout << "Population positive rate " << average << "\n";
+    //! computing variance
+    sum = 0.0;
+    for (auto rate: results) {
+        sum += std::pow(rate - average, 2);
+    }
+    double var = sum/100;
+    std::cout << "Variance " << var << "\n";
+    std::cout << "Standard deviation " << std::pow(var, 0.5) << "\n";
     return 0;
 }
